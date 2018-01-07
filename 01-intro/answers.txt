@@ -1,0 +1,74 @@
+remove duplicates in a query response
+
+  SELECT DISTINT * FROM posts;
+
+  posts = Post.all.unique
+
+filter records using inequalities, pattern matching, ranges, and boolean logic
+
+  SELECT * FROM posts WHERE id <> 1;
+
+  post = Post.findby(id != 1)
+
+
+  SELECT * FROM users WHERE name LIKE 's%';
+  
+  users = Users.find(Regexp(/\b[s]\w*/g))
+
+
+  SELECT * FROM posts WHERE rating BETWEEN 50 AND 100;
+
+  posts = Post.filter(50 < id < 100)
+
+
+  SELECT * FROM posts WHERE rating > 50 AND comments > 10;
+  
+  posts = Post.filter(rating > 50 && comments > 10)
+
+
+sort records in a particular order
+
+  SELECT * FROM posts ORDER BY id ASC;
+
+  posts = Post.all.ascending
+
+limit the number of records returned
+
+  SELECT * FROM posts LIMIT 5;
+
+  posts = Post.all[0..4]
+
+group records into sections
+
+  SELECT comments FROM post GROUP BY post;
+
+  comments = Post.getcomment
+
+
+perform calculations using aggregate functions
+
+  SELECT COUNT(comments), posts FROM comments GROUP BY posts;
+
+  count = Post.comments.count
+
+join tables using cross join, inner join, and outer join
+
+  SELECT * FROM people CROSS JOIN groups;
+
+  combinations = People.combine(groups)
+
+
+  SELECT users.username, comments.comments FROM users
+  INNER JOIN comments ON users.username = comments.username;
+
+  comments = Users.find(1).comments
+
+
+  SELECT Customers.CustomerName, Orders.OrderID
+  FROM Customers
+  FULL OUTER JOIN Orders ON Customers.CustomerID=Orders.CustomerID
+  ORDER BY Customers.CustomerName;
+
+  orders_and_customers = Order.find.all + Customer.find.all
+
+
